@@ -14,6 +14,31 @@ Package Manager manages generation of a new package and provides a basic service
 There is no direct generation for now. So please use the PackageServiceProvider as base class of your package service provider and implement the various interfaces for providing dependent stuff.
 
 
+### Package providing configuration files
+
+Simply implement our `DefinesConfigurations` interface.
+
+```php
+class YOURPACKAGEServiceProvider extends PackageServiceProvider implements DefinesConfigurations
+```
+
+Add your configuration files:
+```php
+    /**
+     * returns an array of config files with their corresponding config_path(name)
+     *
+     * @return array
+     */
+    public function configurationFiles()
+    {
+        return [
+            __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'your-package.php' => 'your-package.php',
+        ];
+    }
+```
+
+
+
 ### Package providing database migrations
 
 Simply implement our `DefinesMigrations` interface.
@@ -32,7 +57,7 @@ Add your migration source paths:
     public function migrations()
     {
         return [
-            __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'migrations',
+            __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'migrations',
         ];
     }
 ```

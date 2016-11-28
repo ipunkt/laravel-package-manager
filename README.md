@@ -11,13 +11,8 @@ Package Manager manages generation of a new package and provides a basic service
 
 ## Installation
 
-Just install the package on your authorization server
+There is no direct generation for now. So please use the PackageServiceProvider as base class of your package service provider and implement the various interfaces for providing dependent stuff.
 
-	composer require donepm/package-manager
-
-and add the Service Provider in your `config/app.php`
-
-	\DonePM\PackageManager\DonePMPackageManagerServiceProvider::class,
 
 ## License
 

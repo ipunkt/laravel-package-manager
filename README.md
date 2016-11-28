@@ -38,7 +38,6 @@ Add your configuration files:
 ```
 
 
-
 ### Package providing database migrations
 
 Simply implement our `DefinesMigrations` interface.
@@ -65,6 +64,33 @@ Add your migration source paths:
 Optional you can define the publishing of your database migrations by setting protected property `$publishDatabaseMigrations` to true. Otherwise your migrations won't be published, but gets migrated.
 
 When publishing, the tag will be `migrations`.
+
+
+### Package providing views
+
+Simply implement our `DefinesViews` interface.
+
+```php
+class YOURPACKAGEServiceProvider extends PackageServiceProvider implements DefinesViews
+```
+
+Add your view source paths:
+```php
+    /**
+     * returns view file paths
+     *
+     * @return array|string[]
+     */
+    public function views()
+    {
+        return [
+            $this->packagePath . 'resources' . DIRECTORY_SEPARATOR . 'views',
+        ];
+    }
+```
+
+When publishing, the view tag will be `view`.
+
 
 ## License
 

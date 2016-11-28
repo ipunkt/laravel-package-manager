@@ -95,11 +95,15 @@ abstract class PackageServiceProvider extends ServiceProvider
             }
         }
 
-        if ($this->publishDatabaseMigrations && $this instanceof DefinesMigrations) {
-            foreach ($this->migrations() as $path) {
-                $this->publishes([
-                    $path => database_path('migrations')
-                ], 'migrations');
+        if ($this instanceof DefinesMigrations) {
+            if ($this->publishDatabaseMigrations) {
+                foreach ($this->migrations() as $path) {
+                    $this->publishes([
+                        $path => database_path('migrations')
+                    ], 'migrations');
+                }
+            } else {
+                $this->loadMigrationsFrom($this->migrations());
             }
         }
     }
@@ -133,10 +137,6 @@ abstract class PackageServiceProvider extends ServiceProvider
 
                 $this->mergeConfigFrom($packageConfigFile, $appConfigFile);
             }
-        }
-
-        if ($this instanceof DefinesMigrations) {
-            $this->loadMigrationsFrom($this->migrations());
         }
     }
 }

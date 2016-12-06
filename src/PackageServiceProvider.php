@@ -1,17 +1,17 @@
 <?php
 
-namespace DonePM\PackageManager;
+namespace Ipunkt\Laravel\PackageManager;
 
-use DonePM\PackageManager\Support\DefinesAliases;
-use DonePM\PackageManager\Support\DefinesAssets;
-use DonePM\PackageManager\Support\DefinesCommands;
-use DonePM\PackageManager\Support\DefinesConfigurations;
-use DonePM\PackageManager\Support\DefinesMigrations;
-use DonePM\PackageManager\Support\DefinesRouteRegistrar;
-use DonePM\PackageManager\Support\DefinesRoutes;
-use DonePM\PackageManager\Support\DefinesTranslations;
-use DonePM\PackageManager\Support\DefinesViews;
-use DonePM\PackageManager\Support\RegistersProviders;
+use Ipunkt\Laravel\PackageManager\Support\DefinesAliases;
+use Ipunkt\Laravel\PackageManager\Support\DefinesAssets;
+use Ipunkt\Laravel\PackageManager\Support\DefinesCommands;
+use Ipunkt\Laravel\PackageManager\Support\DefinesConfigurations;
+use Ipunkt\Laravel\PackageManager\Support\DefinesMigrations;
+use Ipunkt\Laravel\PackageManager\Support\DefinesRouteRegistrar;
+use Ipunkt\Laravel\PackageManager\Support\DefinesRoutes;
+use Ipunkt\Laravel\PackageManager\Support\DefinesTranslations;
+use Ipunkt\Laravel\PackageManager\Support\DefinesViews;
+use Ipunkt\Laravel\PackageManager\Support\RegistersProviders;
 use Illuminate\Support\ServiceProvider;
 
 abstract class PackageServiceProvider extends ServiceProvider

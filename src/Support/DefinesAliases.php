@@ -1,6 +1,6 @@
 <?php
 
-namespace DonePM\PackageManager\Support;
+namespace Ipunkt\Laravel\PackageManager\Support;
 
 interface DefinesAliases
 {

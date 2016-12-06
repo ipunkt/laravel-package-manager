@@ -14,6 +14,30 @@ Package Manager manages generation of a new package and provides a basic service
 There is no direct generation for now. So please use the PackageServiceProvider as base class of your package service provider and implement the various interfaces for providing dependent stuff.
 
 
+### Package providing aliases
+
+Simply implement our `DefinesAliases` interface.
+
+```php
+class YOURPACKAGEServiceProvider extends PackageServiceProvider implements DefinesAliases
+```
+
+Add your configuration files:
+```php
+    /**
+	 * returns list of alias with alias as key and facade as value
+	 *
+	 * @return array
+	 */
+	public function aliases()
+    {
+        return [
+            'Alias' => Facade::class,
+        ];
+    }
+```
+
+
 ### Package providing configuration files
 
 Simply implement our `DefinesConfigurations` interface.

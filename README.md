@@ -113,6 +113,31 @@ Add your routes source path:
     }
 ```
 
+### Package providing routes via Route Registrar
+
+Simply implement our `DefinesRouteRegistrar` interface.
+
+```php
+class YOURPACKAGEServiceProvider extends PackageServiceProvider implements DefinesRouteRegistrar
+```
+
+Add your routes source path:
+```php
+    /**
+     * defines routes by using the router
+     *
+     * @param \Illuminate\Routing\Router $router
+     *
+     * @return void
+     */
+    public function registerRoutesWithRouter(Router $router)
+    {
+        (new RouteRegistrar($router))->all();
+    }
+```
+
+[RouteRegistrar](https://github.com/laravel/passport/blob/1.0/src/RouteRegistrar.php) can be seen at [laravel/passport](https://github.com/laravel/passport) project for example.
+
 
 ## License
 

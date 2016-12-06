@@ -1,5 +1,5 @@
 {
-	"name": "donepm/package-manager",
+	"name": "ipunkt/laravel-package-manager",
 	"description": "Package Manager for laravel packages",
 	"keywords": [
 		"laravel",

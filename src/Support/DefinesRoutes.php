@@ -7,7 +7,7 @@ interface DefinesRoutes
     /**
      * returns routes.php file (absolute path)
      *
-     * @return string
+     * @return array|string[]
      */
-    public function routesFile();
+    public function routesFiles();
 }

@@ -103,13 +103,15 @@ class YOURPACKAGEServiceProvider extends PackageServiceProvider implements Defin
 Add your routes source path:
 ```php
     /**
-     * returns routes.php file (absolute path)
+     * returns routes/web.php|... files (absolute paths)
      *
-     * @return string
+     * @return array|string[]
      */
-    public function routesFile()
+    public function routesFiles()
     {
-        return __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'routes' . DIRECTORY_SEPARATOR . 'web.php';
+        return [
+        	__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'routes' . DIRECTORY_SEPARATOR . 'web.php'
+		];
     }
 ```
 

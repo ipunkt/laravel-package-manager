@@ -38,14 +38,19 @@ abstract class PackageServiceProvider extends ServiceProvider
     public function boot()
     {
         if ( ! $this->app->routesAreCached()) {
+            /** @var \Illuminate\Routing\Router $router */
+            $router = $this->app->make(\Illuminate\Routing\Router::class);
+
             if ($this instanceof DefinesRoutes) {
-                $routesFile = $this->routesFile();
-                require $routesFile;
+                $routesFiles = $this->routesFiles();
+                foreach ((array)$routesFiles as $routesFile) {
+                    // $router exists
+                    if (file_exists($routesFile)) {
+                        require $routesFile;
+                    }
+                }
             }
             if ($this instanceof DefinesRouteRegistrar) {
-                /** @var \Illuminate\Routing\Router $router */
-                $router = $this->app->make(\Illuminate\Routing\Router::class);
-
                 $this->registerRoutesWithRouter($router);
             }
         }

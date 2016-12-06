@@ -1,9 +1,9 @@
 # Package Manager
 
-[![Total Downloads](https://poser.pugx.org/ipunkt/laravel-package-manager/d/total.svg)](https://packagist.org/packages/donepm/oauth-introspection)
-[![Latest Stable Version](https://poser.pugx.org/ipunkt/laravel-package-manager/v/stable.svg)](https://packagist.org/packages/donepm/oauth-introspection)
-[![Latest Unstable Version](https://poser.pugx.org/ipunkt/laravel-package-manager/v/unstable.svg)](https://packagist.org/packages/donepm/oauth-introspection)
-[![License](https://poser.pugx.org/ipunkt/laravel-package-manager/license.svg)](https://packagist.org/packages/donepm/oauth-introspection)
+[![Total Downloads](https://poser.pugx.org/ipunkt/laravel-package-manager/d/total.svg)](https://packagist.org/packages/ipunkt/laravel-package-manager)
+[![Latest Stable Version](https://poser.pugx.org/ipunkt/laravel-package-manager/v/stable.svg)](https://packagist.org/packages/ipunkt/laravel-package-manager)
+[![Latest Unstable Version](https://poser.pugx.org/ipunkt/laravel-package-manager/v/unstable.svg)](https://packagist.org/packages/ipunkt/laravel-package-manager)
+[![License](https://poser.pugx.org/ipunkt/laravel-package-manager/license.svg)](https://packagist.org/packages/ipunkt/laravel-package-manager)
 
 ## Introduction
 

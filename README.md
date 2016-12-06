@@ -92,6 +92,28 @@ Add your view source paths:
 When publishing, the view tag will be `view`.
 
 
+### Package providing routes via file
+
+Simply implement our `DefinesRoutes` interface.
+
+```php
+class YOURPACKAGEServiceProvider extends PackageServiceProvider implements DefinesRoutes
+```
+
+Add your routes source path:
+```php
+    /**
+     * returns routes.php file (absolute path)
+     *
+     * @return string
+     */
+    public function routesFile()
+    {
+        return __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'routes' . DIRECTORY_SEPARATOR . 'web.php';
+    }
+```
+
+
 ## License
 
 Package Manager is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

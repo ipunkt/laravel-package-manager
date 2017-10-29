@@ -4,7 +4,7 @@ namespace Ipunkt\Laravel\PackageManager\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class AliasProvider extends ServiceProvider
+class AliasServiceProvider extends ServiceProvider
 {
     /**
      * Alias map

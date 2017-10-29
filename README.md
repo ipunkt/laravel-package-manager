@@ -106,7 +106,7 @@ By default artisan commands will registered only on console runs. If you want to
 
 #### Aliases
 
-We provide an `AliaseProvider` to register all aliases by hand. But you should provide aliases by the new package discovery:
+We provide an `AliasServiceProvider` to register all aliases by hand. But you should provide aliases by the new package discovery:
 ```json
 {
 	"extra": {

@@ -7,163 +7,68 @@
 
 ## Introduction
 
-Package Manager manages generation of a new package and provides a basic service provider which provides the various components loading at the right time.
+Package Manager helps reducing the package creation time. Therefore it supports some basic providers for laravel packages.
 
 ## Installation
 
-There is no direct generation for now. So please use the PackageServiceProvider as base class of your package service provider and implement the various interfaces for providing dependent stuff.
+Add this package as dependency by using `composer require ipunkt/laravel-package-manager:^1.0`
 
 
-### Package providing aliases
+## Usage
 
-Simply implement our `DefinesAliases` interface.
+We suggest using a Package Service Provider extending the `Illuminate\Support\AggregateServiceProvider` and register all your package related providers as attribute like so:
 
 ```php
-class YOURPACKAGEServiceProvider extends PackageServiceProvider implements DefinesAliases
-```
+<?php
 
-Add your configuration files:
-```php
-    /**
-	 * returns list of alias with alias as key and facade as value
+namespace MyPackage\Providers;
+
+use Illuminate\Support\AggregateServiceProvider;
+
+class MyPackageServiceProvider extends AggregateServiceProvider
+{
+	/**
+	 * The provider class names.
 	 *
-	 * @return array
+	 * @var array
 	 */
-	public function aliases()
-    {
-        return [
-            'Alias' => Facade::class,
-        ];
+	protected $providers = [
+		ConfigProvider::class,
+		BindingsProvider::class,
+		ArtisanProvider::class,
+		MigrationsProvider::class,
+		TranslationsProvider::class,
+		BladeProvider::class,
+		RoutesProvider::class,
+		ViewProvider::class,
+		EventsProvider::class,
+	];
+}
+```
+
+And in your `composer.json` simply auto-register only your aggregate service provider like so:
+
+```json
+{
+	"extra": {
+        "laravel": {
+            "providers": [
+                "MyPackage\\Providers\\MyPackageServiceProvider"
+            ]
+        }
     }
+}
 ```
 
+### Base Service Providers included
 
-### Package providing configuration files
+We include various service providers for the most common package needs. So you can simply use / extend them and at it to your package service provider.
 
-Simply implement our `DefinesConfigurations` interface.
+#### Artisan Commands
 
-```php
-class YOURPACKAGEServiceProvider extends PackageServiceProvider implements DefinesConfigurations
-```
+For registering artisan console command we provide the ArtisanServiceProvider.
 
-Add your configuration files:
-```php
-    /**
-     * returns an array of config files with their corresponding config_path(name)
-     *
-     * @return array
-     */
-    public function configurationFiles()
-    {
-        return [
-            __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'your-package.php' => 'your-package.php',
-        ];
-    }
-```
-
-
-### Package providing database migrations
-
-Simply implement our `DefinesMigrations` interface.
-
-```php
-class YOURPACKAGEServiceProvider extends PackageServiceProvider implements DefinesMigrations
-```
-
-Add your migration source paths:
-```php
-    /**
-     * returns an array of migration paths
-     *
-     * @return array|string[]
-     */
-    public function migrations()
-    {
-        return [
-            __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'migrations',
-        ];
-    }
-```
-
-Optional you can define the publishing of your database migrations by setting protected property `$publishDatabaseMigrations` to true. Otherwise your migrations won't be published, but gets migrated.
-
-When publishing, the tag will be `migrations`.
-
-
-### Package providing views
-
-Simply implement our `DefinesViews` interface.
-
-```php
-class YOURPACKAGEServiceProvider extends PackageServiceProvider implements DefinesViews
-```
-
-Add your view source paths:
-```php
-    /**
-     * returns view file paths
-     *
-     * @return array|string[]
-     */
-    public function views()
-    {
-        return [
-            $this->packagePath . 'resources' . DIRECTORY_SEPARATOR . 'views',
-        ];
-    }
-```
-
-When publishing, the view tag will be `view`.
-
-
-### Package providing routes via file
-
-Simply implement our `DefinesRoutes` interface.
-
-```php
-class YOURPACKAGEServiceProvider extends PackageServiceProvider implements DefinesRoutes
-```
-
-Add your routes source path:
-```php
-    /**
-     * returns routes/web.php|... files (absolute paths)
-     *
-     * @return array|string[]
-     */
-    public function routesFiles()
-    {
-        return [
-        	__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'routes' . DIRECTORY_SEPARATOR . 'web.php'
-		];
-    }
-```
-
-### Package providing routes via Route Registrar
-
-Simply implement our `DefinesRouteRegistrar` interface.
-
-```php
-class YOURPACKAGEServiceProvider extends PackageServiceProvider implements DefinesRouteRegistrar
-```
-
-Add your routes source path:
-```php
-    /**
-     * defines routes by using the router
-     *
-     * @param \Illuminate\Routing\Router $router
-     *
-     * @return void
-     */
-    public function registerRoutesWithRouter(Router $router)
-    {
-        (new RouteRegistrar($router))->all();
-    }
-```
-
-[RouteRegistrar](https://github.com/laravel/passport/blob/1.0/src/RouteRegistrar.php) can be seen at [laravel/passport](https://github.com/laravel/passport) project for example.
-
+You have to fill the `$commands` array with your commands. If you provide a key this key will be the key for registration within the IoC container of laravel. The value should be the command class name like `SuperCommand::class` or a string e.g. `SuperCommand` which gets resolved to lookup a method `registerSuperCommand` within the service provider. So you can register more complex commands by using a separate method.
 
 ## License
 

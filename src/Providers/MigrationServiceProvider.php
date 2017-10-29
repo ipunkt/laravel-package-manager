@@ -14,7 +14,7 @@ class MigrationServiceProvider extends ServiceProvider
      *
      * @var string|array|string[]
      */
-    protected $migrationsFolder = null;
+    protected $migrationsFolder = 'database/migrations';
 
     public function register()
     {

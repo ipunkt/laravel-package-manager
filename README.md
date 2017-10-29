@@ -82,6 +82,10 @@ For providing routes you have to extend the `RouteServiceProvider`.
 
 Just set `$routesNamespace`, `$routesMiddleware` and `$routesFile` to your needs and you are ready to go. For registering various routes you should have one provider for each type of routes file (api, web, ...).
 
+#### Views / Templates
+
+We provide the `ViewServiceProvider` for extension. You have to set the `$namespace` to your package based identifier. The `$templatesFolder` is set to the `resources/views` by default, you can override it.
+
 #### Translations
 
 We provide the `TranslationServiceProvider` for extension. You have to set the `$namespace` to your package based identifier. The `$translationsFolder` is set to the `resources/lang` by default, you can override it.
@@ -95,6 +99,10 @@ For registering artisan console command we provide the `ArtisanServiceProvider`.
 You have to fill the `$commands` array with your commands. If you provide a key this key will be the key for registration within the IoC container of laravel. The value should be the command class name like `SuperCommand::class` or a string e.g. `SuperCommand` which gets resolved to lookup a method `registerSuperCommand` within the service provider. So you can register more complex commands by using a separate method.
 
 By default artisan commands will registered only on console runs. If you want to change that behaviour you can overwrite the value of `$registerOnlyForConsole` to make that happen.
+
+### Common Resolutions
+
+Your aggregated package provider should provide a constant namespace identifier for your package. So you can re-use the same value in all your single package providers consistently.
 
 ## License
 

@@ -14,8 +14,8 @@
 	],
 	"require": {
 		"php": ">=7.0.0",
-		"illuminate/support": "~5.3",
-		"illuminate/routing": "~5.3"
+		"illuminate/support": "~5.5",
+		"illuminate/routing": "~5.5"
 	},
 	"autoload": {
 		"psr-4": {

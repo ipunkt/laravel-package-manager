@@ -104,7 +104,27 @@ You have to fill the `$commands` array with your commands. If you provide a key 
 
 By default artisan commands will registered only on console runs. If you want to change that behaviour you can overwrite the value of `$registerOnlyForConsole` to make that happen.
 
+#### Aliases
+
+We provide an `AliaseProvider` to register all aliases by hand. But you should provide aliases by the new package discovery:
+```json
+{
+	"extra": {
+		"laravel": {
+			"providers": [
+				"YourProvider"
+			],
+			"aliases": {
+				"Alias": "Path\\To\\Facade"
+			}
+		}
+	},
+}
+```
+
 ### Common Resolutions
+
+#### Namespace for views, config, translations, ...
 
 Your aggregated package provider should provide a constant namespace identifier for your package. So you can re-use the same value in all your single package providers consistently.
 

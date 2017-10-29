@@ -2,7 +2,6 @@
 
 namespace Ipunkt\Laravel\PackageManager;
 
-use Ipunkt\Laravel\PackageManager\Support\DefinesAliases;
 use Ipunkt\Laravel\PackageManager\Support\DefinesAssets;
 use Illuminate\Support\ServiceProvider;
 
@@ -38,11 +37,5 @@ abstract class PackageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this instanceof DefinesAliases) {
-            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-            foreach ($this->aliases() as $alias => $class) {
-                $loader->alias($alias, $class);
-            }
-        }
     }
 }

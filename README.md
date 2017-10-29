@@ -76,6 +76,13 @@ Within your package you have a `config/config.php` and you want to have it publi
 
 Then you can get config values by using `config('my-package.)`.
 
+#### Routes
+
+For providing routes you have to extend the `RouteServiceProvider`.
+
+Just set `$routesNamespace`, `$routesMiddleware` and `$routesFile` to your needs and you are ready to go. For registering various routes you should have one provider for each type of routes file (api, web, ...).
+
+
 #### Artisan Commands
 
 For registering artisan console command we provide the `ArtisanServiceProvider`.

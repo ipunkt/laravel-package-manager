@@ -5,11 +5,8 @@ namespace Ipunkt\Laravel\PackageManager;
 use Ipunkt\Laravel\PackageManager\Support\DefinesAliases;
 use Ipunkt\Laravel\PackageManager\Support\DefinesAssets;
 use Ipunkt\Laravel\PackageManager\Support\DefinesMigrations;
-use Ipunkt\Laravel\PackageManager\Support\DefinesRouteRegistrar;
-use Ipunkt\Laravel\PackageManager\Support\DefinesRoutes;
 use Ipunkt\Laravel\PackageManager\Support\DefinesTranslations;
 use Ipunkt\Laravel\PackageManager\Support\DefinesViews;
-use Ipunkt\Laravel\PackageManager\Support\RegistersProviders;
 use Illuminate\Support\ServiceProvider;
 
 abstract class PackageServiceProvider extends ServiceProvider
@@ -35,24 +32,6 @@ abstract class PackageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ( ! $this->app->routesAreCached()) {
-            /** @var \Illuminate\Routing\Router $router */
-            $router = $this->app->make(\Illuminate\Routing\Router::class);
-
-            if ($this instanceof DefinesRoutes) {
-                $routesFiles = $this->routesFiles();
-                foreach ((array)$routesFiles as $routesFile) {
-                    // $router exists
-                    if (file_exists($routesFile)) {
-                        require $routesFile;
-                    }
-                }
-            }
-            if ($this instanceof DefinesRouteRegistrar) {
-                $this->registerRoutesWithRouter($router);
-            }
-        }
-
         if ($this instanceof DefinesTranslations) {
             foreach ($this->translations() as $path) {
                 $this->loadTranslationsFrom($path, $this->namespace());
@@ -101,12 +80,6 @@ abstract class PackageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this instanceof RegistersProviders) {
-            foreach ($this->providers() as $provider) {
-                $this->app->register($provider);
-            }
-        }
-
         if ($this instanceof DefinesAliases) {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
             foreach ($this->aliases() as $alias => $class) {

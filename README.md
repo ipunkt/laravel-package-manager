@@ -70,6 +70,8 @@ For registering artisan console command we provide the ArtisanServiceProvider.
 
 You have to fill the `$commands` array with your commands. If you provide a key this key will be the key for registration within the IoC container of laravel. The value should be the command class name like `SuperCommand::class` or a string e.g. `SuperCommand` which gets resolved to lookup a method `registerSuperCommand` within the service provider. So you can register more complex commands by using a separate method.
 
+By default artisan commands will registered only on console runs. If you want to change that behaviour you can overwrite the value of `$registerOnlyForConsole` to make that happen.
+
 ## License
 
 Package Manager is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

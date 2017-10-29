@@ -17,12 +17,23 @@ class ArtisanServiceProvider extends ServiceProvider
     protected $commands = [];
 
     /**
+     * Then you need to have the artisan commands all the time the app gets in action you have to change the value of this attribute
+     *
+     * @var bool
+     */
+    protected $registerOnlyForConsole = true;
+
+    /**
      * Register any application services.
      *
      * @return void
      */
     public function register()
     {
+        if ($this->registerOnlyForConsole && ! $this->app->runningInConsole()) {
+            return;
+        }
+
         $this->registerCommands($this->commands);
     }
 

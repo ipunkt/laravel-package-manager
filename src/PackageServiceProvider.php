@@ -88,10 +88,6 @@ abstract class PackageServiceProvider extends ServiceProvider
             }
         }
 
-        if ($this->app->runningInConsole() && $this instanceof DefinesCommands) {
-            $this->commands($this->commandClasses());
-        }
-
         if ($this instanceof DefinesAssets) {
             foreach ($this->assets() as $path) {
                 $this->publishes([

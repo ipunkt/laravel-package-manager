@@ -82,6 +82,11 @@ For providing routes you have to extend the `RouteServiceProvider`.
 
 Just set `$routesNamespace`, `$routesMiddleware` and `$routesFile` to your needs and you are ready to go. For registering various routes you should have one provider for each type of routes file (api, web, ...).
 
+#### Translations
+
+We provide the `TranslationServiceProvider` for extension. You have to set the `$namespace` to your package based identifier. The `$translationsFolder` is set to the `resources/lang` by default, you can override it.
+
+For the new implemented way for json files we also support the `$useJson` flag. When `true` the given files have to be json format.
 
 #### Artisan Commands
 

@@ -5,7 +5,6 @@ namespace Ipunkt\Laravel\PackageManager;
 use Ipunkt\Laravel\PackageManager\Support\DefinesAliases;
 use Ipunkt\Laravel\PackageManager\Support\DefinesAssets;
 use Ipunkt\Laravel\PackageManager\Support\DefinesMigrations;
-use Ipunkt\Laravel\PackageManager\Support\DefinesTranslations;
 use Ipunkt\Laravel\PackageManager\Support\DefinesViews;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,16 +31,6 @@ abstract class PackageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this instanceof DefinesTranslations) {
-            foreach ($this->translations() as $path) {
-                $this->loadTranslationsFrom($path, $this->namespace());
-
-                $this->publishes([
-                    $path => resource_path('lang/vendor/' . $this->namespace()),
-                ], 'translation');
-            }
-        }
-
         if ($this instanceof DefinesViews) {
             foreach ($this->views() as $path) {
                 $this->loadViewsFrom($path, $this->namespace());

@@ -4,8 +4,6 @@ namespace Ipunkt\Laravel\PackageManager;
 
 use Ipunkt\Laravel\PackageManager\Support\DefinesAliases;
 use Ipunkt\Laravel\PackageManager\Support\DefinesAssets;
-use Ipunkt\Laravel\PackageManager\Support\DefinesCommands;
-use Ipunkt\Laravel\PackageManager\Support\DefinesConfigurations;
 use Ipunkt\Laravel\PackageManager\Support\DefinesMigrations;
 use Ipunkt\Laravel\PackageManager\Support\DefinesRouteRegistrar;
 use Ipunkt\Laravel\PackageManager\Support\DefinesRoutes;
@@ -53,19 +51,6 @@ abstract class PackageServiceProvider extends ServiceProvider
             if ($this instanceof DefinesRouteRegistrar) {
                 $this->registerRoutesWithRouter($router);
             }
-        }
-
-        if ($this instanceof DefinesConfigurations) {
-            $configurations = $this->configurationFiles();
-            $configMapping = [];
-            foreach ($configurations as $packageConfigFile => $appConfigFile) {
-                if ( ! ends_with($appConfigFile, '.php')) {
-                    $appConfigFile .= '.php';
-                }
-                $configMapping[$packageConfigFile] = config_path($appConfigFile);
-            }
-
-            $this->publishes($configMapping, 'config');
         }
 
         if ($this instanceof DefinesTranslations) {
@@ -126,17 +111,6 @@ abstract class PackageServiceProvider extends ServiceProvider
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
             foreach ($this->aliases() as $alias => $class) {
                 $loader->alias($alias, $class);
-            }
-        }
-
-        if ($this instanceof DefinesConfigurations) {
-            $configurations = $this->configurationFiles();
-            foreach ($configurations as $packageConfigFile => $appConfigFile) {
-                if (ends_with($appConfigFile, '.php')) {
-                    $appConfigFile = str_replace('.php', '', $appConfigFile);
-                }
-
-                $this->mergeConfigFrom($packageConfigFile, $appConfigFile);
             }
         }
     }

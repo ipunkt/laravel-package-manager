@@ -64,9 +64,21 @@ And in your `composer.json` simply auto-register only your aggregate service pro
 
 We include various service providers for the most common package needs. So you can simply use / extend them and at it to your package service provider.
 
+### Package Configuration
+
+If you want to register package configuration you have to extend the `ConfigurationServiceProvider`.
+
+You have to add your configuration files in attribute `$configurationFiles`. File by file as array item. If you want to give an alias for config you have to set is array key. For example:
+
+Within your package you have a `config/config.php` and you want to have it published and merged as `my-package` you have to set it like so
+
+`'my-package' => 'config/config.php'`
+
+Then you can get config values by using `config('my-package.)`.
+
 #### Artisan Commands
 
-For registering artisan console command we provide the ArtisanServiceProvider.
+For registering artisan console command we provide the `ArtisanServiceProvider`.
 
 You have to fill the `$commands` array with your commands. If you provide a key this key will be the key for registration within the IoC container of laravel. The value should be the command class name like `SuperCommand::class` or a string e.g. `SuperCommand` which gets resolved to lookup a method `registerSuperCommand` within the service provider. So you can register more complex commands by using a separate method.
 

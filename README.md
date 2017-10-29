@@ -9,6 +9,8 @@
 
 Package Manager helps reducing the package creation time. Therefore it supports some basic providers for laravel packages.
 
+This package plays nicely with the [laravel plugin seeder package](https://github.com/ipunkt/laravel-package). Just create a new plugin with `composer create-package ipunkt/laravel-package YOUR-PACKAGE-NAME` and you are able to start with all the package manager supports out of the box.
+
 ## Installation
 
 Add this package as dependency by using `composer require ipunkt/laravel-package-manager:^1.0`

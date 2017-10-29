@@ -86,6 +86,10 @@ Just set `$routesNamespace`, `$routesMiddleware` and `$routesFile` to your needs
 
 We provide the `ViewServiceProvider` for extension. You have to set the `$namespace` to your package based identifier. The `$templatesFolder` is set to the `resources/views` by default, you can override it.
 
+#### Database Migrations
+
+We provide the `MigrationServiceProvider` to provide database migration files from package. You have to set the `$migrationsFolder` to your package migrations.
+
 #### Translations
 
 We provide the `TranslationServiceProvider` for extension. You have to set the `$namespace` to your package based identifier. The `$translationsFolder` is set to the `resources/lang` by default, you can override it.

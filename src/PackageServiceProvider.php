@@ -4,19 +4,10 @@ namespace Ipunkt\Laravel\PackageManager;
 
 use Ipunkt\Laravel\PackageManager\Support\DefinesAliases;
 use Ipunkt\Laravel\PackageManager\Support\DefinesAssets;
-use Ipunkt\Laravel\PackageManager\Support\DefinesMigrations;
-use Ipunkt\Laravel\PackageManager\Support\DefinesViews;
 use Illuminate\Support\ServiceProvider;
 
 abstract class PackageServiceProvider extends ServiceProvider
 {
-    /**
-     * should database migrations be published
-     *
-     * @var bool
-     */
-    protected $publishDatabaseMigrations = false;
-
     /**
      * returns namespace of package
      *
@@ -31,33 +22,11 @@ abstract class PackageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this instanceof DefinesViews) {
-            foreach ($this->views() as $path) {
-                $this->loadViewsFrom($path, $this->namespace());
-
-                $this->publishes([
-                    $path => resource_path('views/vendor/' . $this->namespace()),
-                ], 'view');
-            }
-        }
-
         if ($this instanceof DefinesAssets) {
             foreach ($this->assets() as $path) {
                 $this->publishes([
                     $path => public_path('vendor/' . $this->namespace()),
                 ], 'assets');
-            }
-        }
-
-        if ($this instanceof DefinesMigrations) {
-            if ($this->publishDatabaseMigrations) {
-                foreach ($this->migrations() as $path) {
-                    $this->publishes([
-                        $path => database_path('migrations')
-                    ], 'migrations');
-                }
-            } else {
-                $this->loadMigrationsFrom($this->migrations());
             }
         }
     }

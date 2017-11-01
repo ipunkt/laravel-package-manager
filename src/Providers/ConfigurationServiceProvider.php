@@ -4,9 +4,12 @@ namespace Ipunkt\Laravel\PackageManager\Providers;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
+use Ipunkt\Laravel\PackageManager\Providers\Traits\PackagePath;
 
 class ConfigurationServiceProvider extends ServiceProvider
 {
+	use PackagePath;
+
     /**
      * configuration files
      *
@@ -24,7 +27,7 @@ class ConfigurationServiceProvider extends ServiceProvider
     {
         $this->configurations()->each(function (array $configuration) {
             $this->mergeConfigFrom(
-                $configuration['file'], $configuration['key']
+                $this->packagePath($configuration['file']), $configuration['key']
             );
 
             if ($this->app->runningInConsole()) {

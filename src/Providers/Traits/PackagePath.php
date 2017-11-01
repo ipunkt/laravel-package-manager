@@ -4,19 +4,18 @@ namespace Ipunkt\Laravel\PackageManager\Providers\Traits;
 
 trait PackagePath
 {
-	/**
-	 * you have to set the package path to the absolute root path of your package like __DIR__ . '/../../' within
-	 * your Service Provider;
-	 *
-	 * @var string
-	 */
-	protected $packagePath = '';
+    /**
+     * you have to set the package path to the absolute root path of your package like __DIR__ . '/../../' within
+     * your Service Provider;
+     *
+     * @var string
+     */
+    protected $packagePath = '';
 
     /**
      * give relative path from package root and return absolute path
      *
      * @param string $relativePath
-     * @param string $dir
      *
      * @return string
      */

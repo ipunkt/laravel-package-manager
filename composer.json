@@ -20,10 +20,7 @@
 	"autoload": {
 		"psr-4": {
 			"Ipunkt\\Laravel\\PackageManager\\": "src/"
-		},
-		"files": [
-			"src/bootstrap.php"
-		]
+		}
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true

@@ -32,7 +32,7 @@ class ConfigurationServiceProvider extends ServiceProvider
 
             if ($this->app->runningInConsole()) {
                 $this->publishes([
-                    $configuration['file'] => config_path($configuration['alias']),
+                    $this->packagePath($configuration['file']) => config_path($configuration['alias']),
                 ], 'config');
             }
         });

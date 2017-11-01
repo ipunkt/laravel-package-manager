@@ -72,6 +72,8 @@ We include various service providers for the most common package needs. So you c
 
 If you want to register package configuration you have to extend the `ConfigurationServiceProvider`.
 
+First of all, please add a protected `$packagePath` to your extended service provider class and give it a value for the package root folder like so: `protected $packagePath = __DIR__ . '/../../';`. This is necessary to mark your files relative to the package root.
+
 You have to add your configuration files in attribute `$configurationFiles`. File by file as array item. If you want to give an alias for config you have to set is array key. For example:
 
 Within your package you have a `config/config.php` and you want to have it published and merged as `my-package` you have to set it like so
@@ -84,19 +86,33 @@ Then you can get config values by using `config('my-package.)`.
 
 For providing routes you have to extend the `RouteServiceProvider`.
 
+First of all, please add a protected `$packagePath` to your extended service provider class and give it a value for the package root folder like so: `protected $packagePath = __DIR__ . '/../../';`. This is necessary to mark your files relative to the package root.
+
 Just set `$routesNamespace`, `$routesMiddleware` and `$routesFile` to your needs and you are ready to go. For registering various routes you should have one provider for each type of routes file (api, web, ...).
 
 #### Views / Templates
 
-We provide the `ViewServiceProvider` for extension. You have to set the `$namespace` to your package based identifier. The `$templatesFolder` is set to the `resources/views` by default, you can override it.
+We provide the `ViewServiceProvider` for extension.
+
+First of all, please add a protected `$packagePath` to your extended service provider class and give it a value for the package root folder like so: `protected $packagePath = __DIR__ . '/../../';`. This is necessary to mark your files relative to the package root.
+
+You have to set the `$namespace` to your package based identifier. The `$templatesFolder` is set to the `resources/views` by default, you can override it.
 
 #### Database Migrations
 
-We provide the `MigrationServiceProvider` to provide database migration files from package. You have to set the `$migrationsFolder` to your package migrations.
+We provide the `MigrationServiceProvider` to provide database migration files from package.
+
+First of all, please add a protected `$packagePath` to your extended service provider class and give it a value for the package root folder like so: `protected $packagePath = __DIR__ . '/../../';`. This is necessary to mark your files relative to the package root.
+
+You have to set the `$migrationsFolder` to your package migrations.
 
 #### Translations
 
-We provide the `TranslationServiceProvider` for extension. You have to set the `$namespace` to your package based identifier. The `$translationsFolder` is set to the `resources/lang` by default, you can override it.
+We provide the `TranslationServiceProvider` for extension.
+
+First of all, please add a protected `$packagePath` to your extended service provider class and give it a value for the package root folder like so: `protected $packagePath = __DIR__ . '/../../';`. This is necessary to mark your files relative to the package root.
+
+You have to set the `$namespace` to your package based identifier. The `$translationsFolder` is set to the `resources/lang` by default, you can override it.
 
 For the new implemented way for json files we also support the `$useJson` flag. When `true` the given files have to be json format.
 

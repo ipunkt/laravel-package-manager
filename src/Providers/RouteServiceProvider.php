@@ -2,6 +2,7 @@
 
 namespace Ipunkt\Laravel\PackageManager\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Ipunkt\Laravel\PackageManager\Providers\Traits\PackagePath;
 

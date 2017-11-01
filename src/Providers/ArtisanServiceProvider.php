@@ -47,10 +47,6 @@ class ArtisanServiceProvider extends ServiceProvider
      */
     protected function registerCommands(array $commands)
     {
-        if ( ! $this->app->runningInConsole()) {
-            return;
-        }
-
         $registeredCommands = [];
         foreach ($commands as $key => $command) {
             if (is_numeric($key)) {
